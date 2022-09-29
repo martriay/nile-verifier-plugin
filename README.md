@@ -1,4 +1,4 @@
-# Nile Verify plugin
+# Nile verifier plugin
 
 Plugin for [Nile](https://github.com/OpenZeppelin/nile) to verify contracts on [starkscan.co](https://starkscan.co).
 
