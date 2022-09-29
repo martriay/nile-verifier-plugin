@@ -1,6 +1,6 @@
 # Nile Verify plugin
 
-Plugin for [Nile](https://github.com/OpenZeppelin/nile) to verify contracts on [starkscan.co](https://starkscan.con).
+Plugin for [Nile](https://github.com/OpenZeppelin/nile) to verify contracts on [starkscan.co](https://starkscan.co).
 
 > ## ⚠️ WARNING! ⚠️
 >
