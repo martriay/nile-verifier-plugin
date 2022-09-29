@@ -1,6 +1,8 @@
 # First, import click dependency
+import json
 import click
 import requests
+from pprint import pprint
 from os.path import basename, splitext
 from nile.cli import network_option
 from nile.utils import get_hash
@@ -15,41 +17,44 @@ def verify(main_file, network, compiler_version):
     """
     contract_name = get_basename(main_file)
 
+    # to do: improve version management
     if compiler_version is None:
         compiler_version = "0.10.0"
 
     data = {
-      "main_file_path": main_file,
+      "main_file_path": basename(main_file),
       "class_hash": get_hash(contract_name),
       "name": contract_name,
       "compiler_version": compiler_version,
       "is_account_contract": get_is_account(main_file),
-      "files": get_files([main_file]),
+      "files": get_files(main_file),
     }
 
     subdomain = "api" if network == "mainnet" else "api-testnet"
     url = f"https://{subdomain}.starkscan.co/api/verify_class"
 
-    print(f"Submitting to {url}")
-    print(f"Submitting {data}")
-    # res = requests.post(url=url, data=data)
-    # print(res)
+    payload = json.dumps(data)
+    print(f"Submitting to {url}: {payload}")
+    headers = {'Content-type': 'application/json'}
+    res = requests.post(url, data=payload, headers=headers)
+    pprint(res)
 
 
 
 def get_is_account(main_file):
-    # to do improve detection
+    # to do: improve detection
     contract_name = get_basename(main_file)
     return contract_name.endswith("Account")
 
-def get_files(contract_paths):
+def get_files(main_file):
+    # to do: support multifile
+    contract_paths = [main_file]
     files = {}
-
     for contract_path in contract_paths:
         contract_name = get_basename(contract_path)
 
         with open(contract_path) as f:
-            file_contents = f.readlines()
+            file_contents = f.read()#.replace('\n', '')
 
         files[contract_name] = file_contents
 
