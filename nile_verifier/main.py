@@ -15,7 +15,7 @@ def verify(main_file, network, compiler_version):
     """
     Command for automatically verify the sourcecode of a contract on starkscan.co.
     """
-    contract_name = get_basename(main_file)
+    contract_name = get_contract_name(main_file)
 
     # to do: improve version management
     if compiler_version is None:
@@ -36,14 +36,14 @@ def verify(main_file, network, compiler_version):
     payload = json.dumps(data)
     print(f"Submitting to {url}: {payload}")
     headers = {'Content-type': 'application/json'}
-    res = requests.post(url, data=payload, headers=headers)
-    pprint(res)
+    res = requests.post(url, json=data, headers=headers)
+    pprint(res.text)
 
 
 
 def get_is_account(main_file):
     # to do: improve detection
-    contract_name = get_basename(main_file)
+    contract_name = get_contract_name(main_file)
     return contract_name.endswith("Account")
 
 def get_files(main_file):
@@ -51,15 +51,15 @@ def get_files(main_file):
     contract_paths = [main_file]
     files = {}
     for contract_path in contract_paths:
-        contract_name = get_basename(contract_path)
+        contract_filename = basename(contract_path)
 
         with open(contract_path) as f:
-            file_contents = f.read()#.replace('\n', '')
+            file_contents = f.read()
 
-        files[contract_name] = file_contents
+        files[contract_filename] = file_contents
 
     return files
 
 
-def get_basename(path):
+def get_contract_name(path):
     return splitext(basename(path))[0]
