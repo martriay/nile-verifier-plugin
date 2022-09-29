@@ -2,7 +2,6 @@
 import json
 import click
 import requests
-from pprint import pprint
 from os.path import basename, splitext
 from nile.cli import network_option
 from nile.utils import get_hash
@@ -21,9 +20,11 @@ def verify(main_file, network, compiler_version):
     if compiler_version is None:
         compiler_version = "0.10.0"
 
+    class_hash = get_hash(contract_name)
+
     data = {
       "main_file_path": basename(main_file),
-      "class_hash": get_hash(contract_name),
+      "class_hash": class_hash,
       "name": contract_name,
       "compiler_version": compiler_version,
       "is_account_contract": get_is_account(main_file),
@@ -33,11 +34,14 @@ def verify(main_file, network, compiler_version):
     subdomain = "api" if network == "mainnet" else "api-testnet"
     url = f"https://{subdomain}.starkscan.co/api/verify_class"
 
-    payload = json.dumps(data)
-    print(f"Submitting to {url}: {payload}")
+    print(f"Verifying {contract_name} on {network}...")
     headers = {'Content-type': 'application/json'}
     res = requests.post(url, json=data, headers=headers)
-    pprint(res.text)
+    response = json.loads(res.text)
+
+    domain = "starkscan.co" if network == "mainnet" else "testnet.starkscan.co"
+    final_url = f"https://{domain}/class/{class_hash}#code"
+    print(f"Success!: {final_url}")
 
 
 
