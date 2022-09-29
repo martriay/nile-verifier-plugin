@@ -106,6 +106,14 @@ socks = ["PySocks (>=1.5.6,!=1.5.7)"]
 use_chardet_on_py3 = ["chardet (>=3.0.2,<6)"]
 
 [[package]]
+name = "termcolor-whl"
+version = "1.1.2"
+description = "ANSI Color formatting for output in terminal, successor to termcolor (has wheels!)"
+category = "main"
+optional = false
+python-versions = ">=2.6"
+
+[[package]]
 name = "urllib3"
 version = "1.26.12"
 description = "HTTP library with thread-safe connection pooling, file post, and more."
@@ -117,6 +125,17 @@ python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*, !=3.5.*, 
 brotli = ["brotli (>=1.0.9)", "brotlicffi (>=0.8.0)", "brotlipy (>=0.6.0)"]
 secure = ["certifi", "cryptography (>=1.3.4)", "idna (>=2.0.0)", "ipaddress", "pyOpenSSL (>=0.14)", "urllib3-secure-extra"]
 socks = ["PySocks (>=1.5.6,!=1.5.7,<2.0)"]
+
+[[package]]
+name = "yaspin"
+version = "2.2.0"
+description = "Yet Another Terminal Spinner"
+category = "main"
+optional = false
+python-versions = ">=3.7.2,<4.0.0"
+
+[package.dependencies]
+termcolor-whl = "1.1.2"
 
 [[package]]
 name = "zipp"
@@ -133,7 +152,7 @@ testing = ["func-timeout", "jaraco.itertools", "pytest (>=6)", "pytest-black (>=
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "ee30b1e4a1d23c757d432a4630445da796457d5f6644bfce8061f66ea5d1e0b1"
+content-hash = "2f80ae09c0085ec84d8b71a91ed42635ac036bf351934056fa0a7f3a8999aef8"
 
 [metadata.files]
 cairo-nile = [
@@ -172,9 +191,16 @@ requests = [
     {file = "requests-2.28.1-py3-none-any.whl", hash = "sha256:8fefa2a1a1365bf5520aac41836fbee479da67864514bdb821f31ce07ce65349"},
     {file = "requests-2.28.1.tar.gz", hash = "sha256:7c5599b102feddaa661c826c56ab4fee28bfd17f5abca1ebbe3e7f19d7c97983"},
 ]
+termcolor-whl = [
+    {file = "termcolor_whl-1.1.2-py2.py3-none-any.whl", hash = "sha256:3e7eda7348bb90ddea2d7a2171df65ed4a37adf62574fbd5459198410fdba881"},
+]
 urllib3 = [
     {file = "urllib3-1.26.12-py2.py3-none-any.whl", hash = "sha256:b930dd878d5a8afb066a637fbb35144fe7901e3b209d1cd4f524bd0e9deee997"},
     {file = "urllib3-1.26.12.tar.gz", hash = "sha256:3fa96cf423e6987997fc326ae8df396db2a8b7c667747d47ddd8ecba91f4a74e"},
+]
+yaspin = [
+    {file = "yaspin-2.2.0-py3-none-any.whl", hash = "sha256:a6948034483cb263a467bef5a564eb35458e950fcade2cd7ad1d7d4339db4711"},
+    {file = "yaspin-2.2.0.tar.gz", hash = "sha256:febdf35f3e0e45845dc2caa79a18780f9ec7a85a37a9a2c0389b314ba82d8912"},
 ]
 zipp = [
     {file = "zipp-3.8.1-py3-none-any.whl", hash = "sha256:47c40d7fe183a6f21403a199b3e4192cca5774656965b0a4988ad2f8feb5f009"},
