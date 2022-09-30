@@ -1,10 +1,14 @@
 [tool.poetry]
 name = "nile-verifier"
 version = "0.1.0"
-description = ""
+description = "Nile plugin to verify smart contracts on starkscan.co"
+keywords = ["cairo", "nile"]
+license = "MIT"
 authors = ["Martín Triay <martriay@gmail.com>"]
 readme = "README.md"
 packages = [{include = "nile_verifier"}]
+homepage = "https://github.com/martriay/nile-verifier-plugin"
+repository = "https://github.com/martriay/nile-verifier-plugin"
 
 [tool.poetry.dependencies]
 python = "^3.8"

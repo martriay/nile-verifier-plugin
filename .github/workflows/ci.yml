@@ -1,3 +1,21 @@
-- name: Publish python poetry package
-  uses: JRubics/poetry-publish@v1.13
+on:
+  pull_request:
+  workflow_dispatch:
+  push:
+    branches:
+    - main
+    tags:
+    - "v*"
+  release:
+    types: [published]
 
+jobs:
+  dist_upload:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && startsWith(github.event.ref, 'refs/tags')
+    name: Upload to PyPi
+    steps:
+    - name: Build and publish to pypi
+      uses: JRubics/poetry-publish@v1.13
+      with:
+        pypi_token: ${{ secrets.PYPI_TOKEN }}
