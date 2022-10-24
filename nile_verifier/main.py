@@ -3,7 +3,7 @@ import time
 import click
 import logging
 from os.path import basename, splitext
-from nile.utils import get_hash
+from nile.common import get_hash
 from nile_verifier.api import Api
 from yaspin import yaspin
 from yaspin.spinners import Spinners
@@ -18,7 +18,7 @@ def verify(main_file, network, compiler_version):
     """
     api = Api(network)
     contract_name = get_contract_name(main_file)
-    class_hash = get_hash(contract_name)
+    class_hash = hex(get_hash(contract_name))
 
     if api.is_hash_verifiable(class_hash):
         logging.info(f"🔎  Verifying {contract_name} on {network}...")
