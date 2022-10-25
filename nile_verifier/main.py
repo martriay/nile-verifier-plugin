@@ -31,12 +31,18 @@ def verify(main_file, network, compiler_version):
             "files": get_files(main_file),
         })
 
+        status = 'PENDING'
         with yaspin(Spinners.earth, text="Waiting for verification result") as sp:
-            while api.get_job_status(job_id) is 'PENDING':
-                time.sleep(2)
+            while status == 'PENDING':
+                time.sleep(1)
+                status, response = api.get_job_status(job_id)
 
-        scanner_url = api.get_scanner_link(class_hash)
-        logging.info(f"✅  Success! {scanner_url}")
+        if status == 'FAILED':
+            logging.error("💥  Verification failed:")
+            logging.error(response['error_message'])
+        else:
+            scanner_url = api.get_scanner_link(class_hash)
+            logging.info(f"✅  Success! {scanner_url}")
 
 
 def check_is_account(main_file):

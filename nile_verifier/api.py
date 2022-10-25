@@ -33,7 +33,7 @@ class Api:
     def get_job_status(self, job_id):
         res = requests.get(f"{self.api_url}/verify_class_job_status/{job_id}")
         response = json.loads(res.text)
-        return response['status']
+        return response['status'], response
         
     def is_hash_verifiable(self, class_hash):
         res = requests.get(f"{self.api_url}/hash/{class_hash}")
