@@ -4,16 +4,28 @@ import requests
 
 logging.getLogger("urllib3").setLevel(logging.WARNING)
 
+NETWORKS = ['goerli', 'goerli2', 'integration', 'mainnet']
+
 class Api:
     def __init__(self, network):
-        if not network in ['goerli', 'mainnet']:
-            raise Exception("--network can only be mainnet or goerli")
+        if not network in NETWORKS:
+            raise Exception(f"--network can only be one of {NETWORKS}")
         self.network = network
-        subdomain = "api" if network == "mainnet" else "api-testnet"
+        subdomain = {
+            "mainnet": "api",
+            "goerli": "api-testnet",
+            "goerli2": "api-testnet-2",
+            "integration": "api-integration"
+        }[network]
         self.api_url = f"https://{subdomain}.starkscan.co/api"
       
     def get_scanner_link(self, class_hash):
-        domain = "starkscan.co" if self.network == "mainnet" else "testnet.starkscan.co"
+        domain = {
+            "mainnet": "starkscan.co",
+            "goerli": "testnet.starkscan.co",
+            "goerli2": "testnet-2.starkscan.co",
+            "integration": "integration.starkscan.co"
+        }[self.network]
         return f"https://{domain}/class/{class_hash}#code"
 
     def create_job(self, data):
