@@ -1,9 +1,8 @@
-# First, import click dependency
 import time
-import click
+import asyncclick as click
 import logging
 from os.path import basename, splitext
-from nile.common import get_hash
+from nile.common import get_class_hash
 from nile_verifier.api import Api
 from yaspin import yaspin
 from yaspin.spinners import Spinners
@@ -11,14 +10,14 @@ from yaspin.spinners import Spinners
 @click.command()
 @click.argument("main_file", nargs=1)
 @click.option("--network", nargs=1, required=True)
-@click.option("--compiler_version", nargs=1, default="0.10.0")
+@click.option("--compiler_version", nargs=1, default="0.10.2")
 def verify(main_file, network, compiler_version):
     """
     Command for automatically verify the sourcecode of a contract on starkscan.co.
     """
     api = Api(network)
     contract_name = get_contract_name(main_file)
-    class_hash = hex(get_hash(contract_name))
+    class_hash = hex(get_class_hash(contract_name))
 
     if api.is_hash_verifiable(class_hash):
         logging.info(f"🔎  Verifying {contract_name} on {network}...")
