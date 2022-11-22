@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "nile-verifier"
-version = "0.1.2"
+version = "0.1.4"
 description = "Nile plugin to verify smart contracts on starkscan.co"
 keywords = ["cairo", "nile"]
 license = "MIT"
@@ -17,7 +17,7 @@ cairo-nile = "^0.9.0"
 requests = "^2.28.1"
 yaspin = "^2.2.0"
 
-[tool.poetry.plugins."nile_plugins"]
+[tool.poetry.plugins."nile_plugins.cli"]
 "verify" = "nile_verifier.main.verify"
 
 [build-system]
