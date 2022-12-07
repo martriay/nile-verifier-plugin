@@ -21,7 +21,7 @@ $ nile verify contracts/uwu.cairo --network goerli
 ✅ Success! https://testnet.starkscan.co/class/0x226718449b40fa299d718eb50f72af707f2210e540e11a830c2ad72a235d5e0#code
 ```
 
-Note that the contract has to be deployed, or the verification will fail
+Note that the contract has to be declared, or the verification will fail
 ```
 $ nile verify contracts/uwu.cairo --network goerli
 ❌ Could not find any contract with hash 0x226718449b40fa299d718eb50f72af707f2210e540e11a830c2ad72a235d5e0
