@@ -300,27 +300,27 @@ Web3 = "*"
 
 [[package]]
 name = "cairo-nile"
-version = "0.11.0"
+version = "0.13.0"
 description = "StarkNet/Cairo development toolbelt"
 category = "main"
 optional = false
 python-versions = "<3.10,>=3.8"
 files = [
-    {file = "cairo-nile-0.11.0.tar.gz", hash = "sha256:abf0cc5f9fe1ce593dc9c004b486e8292bb142b7f8336191c46847c4d6b6d010"},
-    {file = "cairo_nile-0.11.0-py3-none-any.whl", hash = "sha256:2afaca34ed9e390ff6e1c654ada634c9c0464637d7c4165a47aa0205ed5eb96d"},
+    {file = "cairo-nile-0.13.0.tar.gz", hash = "sha256:a83a960231fca441adb24c6d8e8c1348439e2e227a323e00ecc5c6f670bd031d"},
+    {file = "cairo_nile-0.13.0-py3-none-any.whl", hash = "sha256:589938bcbe4a640ac2abeb2c40591d7b670d163ac82b1ef16daef9a56c8c7458"},
 ]
 
 [package.dependencies]
 anyio = ">=3.6.1"
 asyncclick = ">=8.1.3.4"
-cairo-lang = ">=0.10.1"
+cairo-lang = ">=0.10.3"
 click = ">=8.0,<9.0"
 importlib-metadata = ">=4.0"
 pytest = ">=7.1.3"
 pytest-asyncio = ">=0.19.0"
 python-dotenv = ">=0.19.2"
 requests = ">=2.28.1"
-starknet-devnet = ">=0.3.5"
+starknet-devnet = ">=0.4.3"
 
 [package.extras]
 testing = ["pytest", "pytest-cov", "setuptools", "tox", "twine"]
@@ -2295,4 +2295,4 @@ testing = ["flake8 (<5)", "func-timeout", "jaraco.functools", "jaraco.itertools"
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.8,<3.10"
-content-hash = "5668f1b6056d6a7d26fc2c1eb77e0450365cc6f3823ad5bb342ed55cedfcb9bf"
+content-hash = "5420cd2a5d3fdfc80261c6a5562445ec060065c7bef0b87f35618297efbc0721"
