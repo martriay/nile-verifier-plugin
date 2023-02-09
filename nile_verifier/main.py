@@ -69,7 +69,7 @@ def get_files(main_file, import_search_paths, cache = {}, include_path=False):
 
     found_file = False
     for import_search_path in import_search_paths:
-        contract_abs_path = f"{import_search_path}/{main_file}"
+        contract_abs_path = os.path.join(import_search_path, main_file)
         if os.path.exists(contract_abs_path):
             found_file = True
             with open(contract_abs_path) as f:
@@ -113,12 +113,13 @@ def get_import_search_paths(cairo_path):
     search_paths = []
 
     # --cairo_path parameter
-    if cairo_path is not None:
-        search_paths.extend(cairo_path.split(":"))
+    if cairo_path is not None and cairo_path.strip():
+        search_paths.extend(cairo_path.strip().split(":"))
 
     # CAIRO_PATH environment variable
     env_var = os.getenv('CAIRO_PATH')
-    search_paths.extend(env_var.split(":"))
+    if env_var is not None and env_var.strip():
+        search_paths.extend(env_var.strip().split(":"))
 
     # current directory and standard library directory relative to the compiler path
     standard_lib_dir = os.path.join(os.path.dirname(cairo_compile.__file__), "../../../..")
