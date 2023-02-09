@@ -64,7 +64,7 @@ def get_files(main_file, import_search_paths, cache = {}, include_path=False):
         # circular dependency - cairo compiler would throw an error but we'll just return
         return {}
 
-    regex = "^from\s(.*?)\simport"
+    regex = r"^from\s(.*?)\simport"
     regex_compiled = re.compile(regex, re.MULTILINE)
 
     found_file = False
