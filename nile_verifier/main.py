@@ -8,12 +8,14 @@ from nile.common import get_class_hash
 from nile_verifier.api import Api
 from yaspin import yaspin
 from yaspin.spinners import Spinners
+
 from starkware.cairo.lang.compiler import cairo_compile
+from starkware.cairo.lang.version import __version__
 
 @click.command()
 @click.argument("main_file", nargs=1)
 @click.option("--network", nargs=1, required=True)
-@click.option("--compiler_version", nargs=1, default="0.10.3")
+@click.option("--compiler_version", nargs=1, default=__version__)
 @click.option("--cairo_path", nargs=1)
 def verify(main_file, network, compiler_version, cairo_path):
     """
